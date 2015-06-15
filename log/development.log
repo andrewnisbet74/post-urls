@@ -1,0 +1,744 @@
+  [1m[36m (2.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateCrawlRequests (20150612163106)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "crawl_requests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "source" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150612163106"]]
+  [1m[35m (0.4ms)[0m  commit transaction
+Migrating to CreateUrls (20150612172928)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "urls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "crawl_request_id" integer, "url_text" varchar(255), "external_id" integer, "status" varchar(255), "source" varchar(255), "maximum_crawl_depth" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150612172928"]]
+  [1m[35m (0.3ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2015-06-14 21:01:39 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/railties-4.1.9/lib/rails/templates/rails/welcome/index.html.erb (1.2ms)
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/urls" for 127.0.0.1 at 2015-06-14 21:02:33 -0700
+Processing by UrlsController#index as HTML
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/urls" for 127.0.0.1 at 2015-06-14 21:02:59 -0700
+Processing by UrlsController#index as HTML
+  [1m[36mUrl Load (0.1ms)[0m  [1mSELECT "urls".* FROM "urls"[0m
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/urls" for 127.0.0.1 at 2015-06-14 21:03:28 -0700
+Processing by UrlsController#index as */*
+  [1m[35mUrl Load (0.3ms)[0m  SELECT "urls".* FROM "urls"
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/urls" for 127.0.0.1 at 2015-06-14 21:03:30 -0700
+Processing by UrlsController#index as */*
+  [1m[36mUrl Load (0.2ms)[0m  [1mSELECT "urls".* FROM "urls"[0m
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/urls" for 127.0.0.1 at 2015-06-14 21:05:05 -0700
+Processing by UrlsController#index as HTML
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/urls" for 127.0.0.1 at 2015-06-14 21:05:50 -0700
+Processing by UrlsController#index as */*
+  [1m[36mUrl Load (0.1ms)[0m  [1mSELECT "urls".* FROM "urls"[0m
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/crawl_request" for 127.0.0.1 at 2015-06-14 21:06:13 -0700
+
+ActionController::RoutingError (No route matches [POST] "/crawl_request"):
+  actionpack (4.1.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.9) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.9) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.9) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.9) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.9) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.9) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.9) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.9) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.3) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.9) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.3) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.9) lib/action_dispatch/middleware/static.rb:84:in `call'
+  railties (4.1.9) lib/rails/engine.rb:514:in `call'
+  railties (4.1.9) lib/rails/application.rb:144:in `call'
+  rack (1.5.3) lib/rack/lock.rb:17:in `call'
+  rack (1.5.3) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.3) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/anisbet/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/anisbet/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/anisbet/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.1ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/routes/_table.html.erb (4.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (20.7ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:07:47 -0700
+Processing by CrawlRequestsController#create as */*
+Completed 400 Bad Request in 3ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:77:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:34:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.1ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:14:41 -0700
+Processing by CrawlRequestsController#create as */*
+Completed 400 Bad Request in 2ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:77:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:34:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.2ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:17:55 -0700
+Processing by CrawlRequestsController#create as */*
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:17:55.311095"], ["updated_at", "2015-06-15 04:17:55.311095"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 1]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 14ms (Views: 0.7ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:21:51 -0700
+Processing by CrawlRequestsController#create as */*
+Completed 400 Bad Request in 2ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:78:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:34:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.0ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:23:58 -0700
+Processing by CrawlRequestsController#create as */*
+Completed 400 Bad Request in 0ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:78:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:34:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.2ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:28:37 -0700
+Processing by CrawlRequestsController#create as */*
+Completed 400 Bad Request in 2ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:78:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:34:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.1ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:30:05 -0700
+Processing by CrawlRequestsController#create as */*
+Completed 400 Bad Request in 0ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:78:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:34:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.1ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:30:40 -0700
+Processing by CrawlRequestsController#create as */*
+Completed 400 Bad Request in 0ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:78:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:34:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.2ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:32:54 -0700
+Processing by CrawlRequestsController#create as */*
+Completed 400 Bad Request in 2ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:78:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:34:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.2ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:33:39 -0700
+Processing by CrawlRequestsController#create as */*
+Completed 400 Bad Request in 2ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:78:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:34:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.7ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:34:41 -0700
+Processing by CrawlRequestsController#create as */*
+Completed 400 Bad Request in 2ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:78:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:34:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.4ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.9ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.3ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:38:41 -0700
+Processing by CrawlRequestsController#create as */*
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:38:41.496077"], ["updated_at", "2015-06-15 04:38:41.496077"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 2]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 11ms (Views: 0.7ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:39:26 -0700
+Processing by CrawlRequestsController#create as */*
+WARNING: Can't mass-assign protected attributes for CrawlRequest: action, controller
+	app/controllers/crawl_requests_controller.rb:34:in `create'
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:39:26.925160"], ["updated_at", "2015-06-15 04:39:26.925160"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 3]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 12ms (Views: 0.6ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:39:51 -0700
+Processing by CrawlRequestsController#create as */*
+WARNING: Can't mass-assign protected attributes for CrawlRequest: action, controller
+	app/controllers/crawl_requests_controller.rb:34:in `create'
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:39:51.523616"], ["updated_at", "2015-06-15 04:39:51.523616"]]
+saving urls
+  [1m[35mUrl Load (0.0ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 4]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 5ms (Views: 0.4ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:40:35 -0700
+Processing by CrawlRequestsController#create as */*
+WARNING: Can't mass-assign protected attributes for CrawlRequest: action, controller
+	app/controllers/crawl_requests_controller.rb:34:in `create'
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:40:35.656082"], ["updated_at", "2015-06-15 04:40:35.656082"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 5]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 12ms (Views: 0.6ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:41:15 -0700
+Processing by CrawlRequestsController#create as */*
+WARNING: Can't mass-assign protected attributes for CrawlRequest: action, controller
+	app/controllers/crawl_requests_controller.rb:35:in `create'
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:41:15.452206"], ["updated_at", "2015-06-15 04:41:15.452206"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 6]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 11ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:42:36 -0700
+Processing by CrawlRequestsController#create as */*
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:42:36.706579"], ["updated_at", "2015-06-15 04:42:36.706579"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 7]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 10ms (Views: 1.0ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:43:15 -0700
+Processing by CrawlRequestsController#create as */*
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:43:15.420154"], ["updated_at", "2015-06-15 04:43:15.420154"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 8]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 8ms (Views: 0.7ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/crawl_requests" for 127.0.0.1 at 2015-06-14 21:43:53 -0700
+Processing by CrawlRequestsController#create as */*
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:43:53.253993"], ["updated_at", "2015-06-15 04:43:53.253993"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 9]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 10ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 21:44:11 -0700
+Processing by CrawlRequestsController#create as JSON
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:44:11.438775"], ["updated_at", "2015-06-15 04:44:11.438775"]]
+saving urls
+  [1m[35mUrl Load (0.0ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 10]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 6ms (Views: 0.4ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 21:45:52 -0700
+Processing by CrawlRequestsController#create as JSON
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:45:52.166208"], ["updated_at", "2015-06-15 04:45:52.166208"]]
+saving urls
+  [1m[35mUrl Load (0.0ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 11]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 4ms (Views: 0.4ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 21:49:43 -0700
+Processing by CrawlRequestsController#create as JSON
+Completed 500 Internal Server Error in 3ms
+
+NoMethodError (undefined method `stringify_keys' for :crawl_request:Symbol):
+  app/controllers/crawl_requests_controller.rb:36:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.9ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 21:50:13 -0700
+Processing by CrawlRequestsController#create as JSON
+Completed 500 Internal Server Error in 3ms
+
+NoMethodError (undefined method `stringify_keys' for "crawl_request":String):
+  app/controllers/crawl_requests_controller.rb:36:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.4ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 21:51:57 -0700
+Processing by CrawlRequestsController#create as JSON
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 04:51:57.729586"], ["updated_at", "2015-06-15 04:51:57.729586"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 12]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 10ms (Views: 0.6ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 21:53:36 -0700
+Processing by CrawlRequestsController#create as JSON
+Completed 400 Bad Request in 2ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:79:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:35:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.1ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 21:53:56 -0700
+Processing by CrawlRequestsController#create as JSON
+Completed 400 Bad Request in 0ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:79:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:35:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.0ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 21:54:49 -0700
+Processing by CrawlRequestsController#create as JSON
+Completed 400 Bad Request in 0ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:80:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:35:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.8ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 21:56:02 -0700
+Processing by CrawlRequestsController#create as JSON
+Completed 400 Bad Request in 0ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:80:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:35:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.2ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 21:59:05 -0700
+Processing by CrawlRequestsController#create as JSON
+Completed 400 Bad Request in 0ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:80:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:35:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.9ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.8ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:03:00 -0700
+Processing by CrawlRequestsController#create as JSON
+Completed 400 Bad Request in 0ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:80:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:35:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.2ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:03:52 -0700
+Processing by CrawlRequestsController#create as JSON
+WARNING: Can't mass-assign protected attributes for CrawlRequest: action, controller, format
+	app/controllers/crawl_requests_controller.rb:36:in `create'
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 05:03:52.465673"], ["updated_at", "2015-06-15 05:03:52.465673"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 13]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 9ms (Views: 0.6ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:04:32 -0700
+Processing by CrawlRequestsController#create as JSON
+Completed 400 Bad Request in 0ms
+
+ActionController::ParameterMissing (param is missing or the value is empty: crawl_request):
+  app/controllers/crawl_requests_controller.rb:80:in `crawl_request_params'
+  app/controllers/crawl_requests_controller.rb:35:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.4ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:05:00 -0700
+Processing by CrawlRequestsController#create as JSON
+Completed 500 Internal Server Error in 1ms
+
+NameError (undefined local variable or method `parms' for #<CrawlRequestsController:0x007fccfba2eea8>):
+  app/controllers/crawl_requests_controller.rb:35:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (6.9ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.6ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:05:12 -0700
+Processing by CrawlRequestsController#create as JSON
+WARNING: Can't mass-assign protected attributes for CrawlRequest: action, controller, format
+	app/controllers/crawl_requests_controller.rb:36:in `create'
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 05:05:12.123149"], ["updated_at", "2015-06-15 05:05:12.123149"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 14]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 12ms (Views: 0.7ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:08:42 -0700
+Processing by CrawlRequestsController#create as JSON
+  Parameters: {"crawl_request"=>{"source"=>"postman"}}
+WARNING: Can't mass-assign protected attributes for CrawlRequest: crawl_request, action, controller, format
+	app/controllers/crawl_requests_controller.rb:36:in `create'
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-06-15 05:08:42.396434"], ["updated_at", "2015-06-15 05:08:42.396434"]]
+saving urls
+  [1m[35mUrl Load (0.0ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 15]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 8ms (Views: 0.3ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:09:19 -0700
+Processing by CrawlRequestsController#create as JSON
+  Parameters: {"crawl_request"=>{"source"=>"postman"}}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "source", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2015-06-15 05:09:19.166605"], ["source", "postman"], ["updated_at", "2015-06-15 05:09:19.166605"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 16]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 8ms (Views: 0.6ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:10:28 -0700
+Processing by CrawlRequestsController#create as JSON
+  Parameters: {"crawl_request"=>{"source"=>"postman", "urls_attributes"=>[{"url_text"=>"foo"}, {"url_text"=>"baz"}]}}
+Unpermitted parameters: urls_attributes
+WARNING: Can't mass-assign protected attributes for CrawlRequest: urls_attributes
+	app/controllers/crawl_requests_controller.rb:36:in `create'
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "source", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2015-06-15 05:10:28.615161"], ["source", "postman"], ["updated_at", "2015-06-15 05:10:28.615161"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "urls" ("crawl_request_id", "created_at", "updated_at") VALUES (?, ?, ?)  [["crawl_request_id", 17], ["created_at", "2015-06-15 05:10:28.617633"], ["updated_at", "2015-06-15 05:10:28.617633"]]
+saving urls
+  [1m[36mUrl Load (0.1ms)[0m  [1mSELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?[0m  [["crawl_request_id", 17]]
+  [1m[35m (0.3ms)[0m  rollback transaction
+Completed 500 Internal Server Error in 19ms
+
+NoMethodError (undefined method `[]' for true:TrueClass):
+  app/models/crawl_request.rb:12:in `block in save_urls'
+  app/models/crawl_request.rb:11:in `save_urls'
+  app/controllers/crawl_requests_controller.rb:38:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.6ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:11:32 -0700
+Processing by CrawlRequestsController#create as JSON
+  Parameters: {"crawl_request"=>{"source"=>"postman", "urls_attributes"=>[{"url_text"=>"foo"}, {"url_text"=>"baz"}]}}
+WARNING: Can't mass-assign protected attributes for CrawlRequest: urls_attributes
+	app/controllers/crawl_requests_controller.rb:34:in `create'
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "crawl_requests" ("created_at", "source", "updated_at") VALUES (?, ?, ?)  [["created_at", "2015-06-15 05:11:32.315898"], ["source", "postman"], ["updated_at", "2015-06-15 05:11:32.315898"]]
+saving urls
+  [1m[36mUrl Load (0.1ms)[0m  [1mSELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?[0m  [["crawl_request_id", 17]]
+  [1m[35m (0.4ms)[0m  commit transaction
+Completed 201 Created in 10ms (Views: 0.6ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:12:05 -0700
+Processing by CrawlRequestsController#create as JSON
+  Parameters: {"crawl_request"=>{"source"=>"postman", "urls_attributes"=>[{"url_text"=>"foo"}, {"url_text"=>"baz"}]}}
+WARNING: Can't mass-assign protected attributes for CrawlRequest: urls_attributes
+	app/controllers/crawl_requests_controller.rb:34:in `create'
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "crawl_requests" ("created_at", "source", "updated_at") VALUES (?, ?, ?)  [["created_at", "2015-06-15 05:12:05.614144"], ["source", "postman"], ["updated_at", "2015-06-15 05:12:05.614144"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "urls" ("crawl_request_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["crawl_request_id", 18], ["created_at", "2015-06-15 05:12:05.615125"], ["updated_at", "2015-06-15 05:12:05.615125"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 18]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 16ms
+
+NoMethodError (undefined method `[]' for true:TrueClass):
+  app/models/crawl_request.rb:12:in `block in save_urls'
+  app/models/crawl_request.rb:11:in `save_urls'
+  app/controllers/crawl_requests_controller.rb:36:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.4ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:13:57 -0700
+Processing by CrawlRequestsController#create as JSON
+  Parameters: {"crawl_request"=>{"source"=>"postman", "urls_attributes"=>[{"url_text"=>"foo"}, {"url_text"=>"baz"}]}}
+WARNING: Can't mass-assign protected attributes for CrawlRequest: urls_attributes
+	app/controllers/crawl_requests_controller.rb:34:in `create'
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "source", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2015-06-15 05:13:57.825505"], ["source", "postman"], ["updated_at", "2015-06-15 05:13:57.825505"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "urls" ("crawl_request_id", "created_at", "updated_at") VALUES (?, ?, ?)  [["crawl_request_id", 18], ["created_at", "2015-06-15 05:13:57.826522"], ["updated_at", "2015-06-15 05:13:57.826522"]]
+saving urls
+  [1m[36mUrl Load (0.1ms)[0m  [1mSELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?[0m  [["crawl_request_id", 18]]
+  [1m[35m (0.2ms)[0m  rollback transaction
+Completed 500 Internal Server Error in 18ms
+
+NoMethodError (undefined method `[]' for true:TrueClass):
+  app/models/crawl_request.rb:12:in `block in save_urls'
+  app/models/crawl_request.rb:11:in `save_urls'
+  app/controllers/crawl_requests_controller.rb:36:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.0ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:16:20 -0700
+Processing by CrawlRequestsController#create as JSON
+  Parameters: {"crawl_request"=>{"source"=>"postman", "urls_attributes"=>[{"url_text"=>"foo"}, {"url_text"=>"baz"}]}}
+WARNING: Can't mass-assign protected attributes for CrawlRequest: urls_attributes
+	app/controllers/crawl_requests_controller.rb:34:in `create'
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "crawl_requests" ("created_at", "source", "updated_at") VALUES (?, ?, ?)  [["created_at", "2015-06-15 05:16:20.355283"], ["source", "postman"], ["updated_at", "2015-06-15 05:16:20.355283"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "urls" ("crawl_request_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["crawl_request_id", 18], ["created_at", "2015-06-15 05:16:20.356227"], ["updated_at", "2015-06-15 05:16:20.356227"]]
+saving urls
+  [1m[35mUrl Load (0.1ms)[0m  SELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?  [["crawl_request_id", 18]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 14ms
+
+NoMethodError (undefined method `[]' for true:TrueClass):
+  app/models/crawl_request.rb:12:in `block in save_urls'
+  app/models/crawl_request.rb:11:in `save_urls'
+  app/controllers/crawl_requests_controller.rb:36:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.4ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.2ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:18:18 -0700
+Processing by CrawlRequestsController#create as JSON
+  Parameters: {"crawl_request"=>{"source"=>"postman", "urls_attributes"=>[{"url_text"=>"foo"}, {"url_text"=>"baz"}]}}
+WARNING: Can't mass-assign protected attributes for CrawlRequest: urls_attributes
+	app/controllers/crawl_requests_controller.rb:34:in `create'
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "source", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2015-06-15 05:18:18.303893"], ["source", "postman"], ["updated_at", "2015-06-15 05:18:18.303893"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "urls" ("crawl_request_id", "created_at", "updated_at") VALUES (?, ?, ?)  [["crawl_request_id", 18], ["created_at", "2015-06-15 05:18:18.304883"], ["updated_at", "2015-06-15 05:18:18.304883"]]
+saving urls
+  [1m[36mUrl Load (0.1ms)[0m  [1mSELECT "urls".* FROM "urls"  WHERE "urls"."crawl_request_id" = ?[0m  [["crawl_request_id", 18]]
+  [1m[35m (0.2ms)[0m  rollback transaction
+Completed 500 Internal Server Error in 16ms
+
+NoMethodError (undefined method `[]' for true:TrueClass):
+  app/models/crawl_request.rb:12:in `block in save_urls'
+  app/models/crawl_request.rb:11:in `save_urls'
+  app/controllers/crawl_requests_controller.rb:37:in `create'
+
+
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.4ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.7ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/anisbet/.rvm/gems/ruby-2.1.5@post_nested/gems/actionpack-4.1.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.2ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:19:43 -0700
+Processing by CrawlRequestsController#create as JSON
+  Parameters: {"crawl_request"=>{"source"=>"postman", "urls_attributes"=>[{"url_text"=>"foo"}, {"url_text"=>"baz"}]}}
+WARNING: Can't mass-assign protected attributes for CrawlRequest: urls_attributes
+	app/controllers/crawl_requests_controller.rb:34:in `create'
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "crawl_requests" ("created_at", "source", "updated_at") VALUES (?, ?, ?)  [["created_at", "2015-06-15 05:19:43.370471"], ["source", "postman"], ["updated_at", "2015-06-15 05:19:43.370471"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "urls" ("crawl_request_id", "created_at", "updated_at", "url_text") VALUES (?, ?, ?, ?)[0m  [["crawl_request_id", 18], ["created_at", "2015-06-15 05:19:43.371434"], ["updated_at", "2015-06-15 05:19:43.371434"], ["url_text", "foo"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "urls" ("crawl_request_id", "created_at", "updated_at", "url_text") VALUES (?, ?, ?, ?)  [["crawl_request_id", 18], ["created_at", "2015-06-15 05:19:43.372065"], ["updated_at", "2015-06-15 05:19:43.372065"], ["url_text", "baz"]]
+saving urls
+  [1m[36m (0.3ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 15ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:20:33 -0700
+Processing by CrawlRequestsController#create as JSON
+  Parameters: {"crawl_request"=>{"source"=>"postman", "urls_attributes"=>[{"url_text"=>"foo"}, {"url_text"=>"baz"}]}}
+WARNING: Can't mass-assign protected attributes for CrawlRequest: urls_attributes
+	app/controllers/crawl_requests_controller.rb:34:in `create'
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "crawl_requests" ("created_at", "source", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2015-06-15 05:20:33.127048"], ["source", "postman"], ["updated_at", "2015-06-15 05:20:33.127048"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "urls" ("crawl_request_id", "created_at", "updated_at", "url_text") VALUES (?, ?, ?, ?)  [["crawl_request_id", 19], ["created_at", "2015-06-15 05:20:33.128027"], ["updated_at", "2015-06-15 05:20:33.128027"], ["url_text", "foo"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "urls" ("crawl_request_id", "created_at", "updated_at", "url_text") VALUES (?, ?, ?, ?)[0m  [["crawl_request_id", 19], ["created_at", "2015-06-15 05:20:33.128825"], ["updated_at", "2015-06-15 05:20:33.128825"], ["url_text", "baz"]]
+saving urls
+  [1m[35m (2.4ms)[0m  commit transaction
+Completed 201 Created in 10ms (Views: 0.4ms | ActiveRecord: 2.9ms)
+
+
+Started POST "/crawl_requests.json" for 127.0.0.1 at 2015-06-14 22:21:39 -0700
+Processing by CrawlRequestsController#create as JSON
+  Parameters: {"crawl_request"=>{"source"=>"postman", "urls_attributes"=>[{"url_text"=>"foo"}, {"url_text"=>"baz"}]}}
+WARNING: Can't mass-assign protected attributes for CrawlRequest: urls_attributes
+	app/controllers/crawl_requests_controller.rb:34:in `create'
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "crawl_requests" ("created_at", "source", "updated_at") VALUES (?, ?, ?)  [["created_at", "2015-06-15 05:21:39.098388"], ["source", "postman"], ["updated_at", "2015-06-15 05:21:39.098388"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "urls" ("crawl_request_id", "created_at", "updated_at", "url_text") VALUES (?, ?, ?, ?)[0m  [["crawl_request_id", 20], ["created_at", "2015-06-15 05:21:39.100805"], ["updated_at", "2015-06-15 05:21:39.100805"], ["url_text", "foo"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "urls" ("crawl_request_id", "created_at", "updated_at", "url_text") VALUES (?, ?, ?, ?)  [["crawl_request_id", 20], ["created_at", "2015-06-15 05:21:39.101953"], ["updated_at", "2015-06-15 05:21:39.101953"], ["url_text", "baz"]]
+saving urls
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 27ms (Views: 0.7ms | ActiveRecord: 1.8ms)
